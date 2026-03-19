@@ -1,8 +1,22 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { Target, Brain, ShoppingCart, Check, Clock } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const plans = [
+interface Plan {
+  icon: LucideIcon;
+  name: string;
+  tagline: string;
+  features: string[];
+  setup: string;
+  monthly: string;
+  prazo: string;
+  cta: string;
+  highlight: boolean;
+}
+
+const plans: Plan[] = [
   {
-    icon: "🎯",
+    icon: Target,
     name: "Landing Page com Automação",
     tagline: "Para campanhas e anúncios que convertem",
     features: [
@@ -15,12 +29,12 @@ const plans = [
     ],
     setup: "R$ 497",
     monthly: "+ R$ 49,90/mês (hospedagem + suporte)",
-    prazo: "⏱ 10 a 20 dias",
+    prazo: "10 a 20 dias",
     cta: "Quero essa LP →",
     highlight: false,
   },
   {
-    icon: "🧠",
+    icon: Brain,
     name: "Site Inteligente",
     tagline: "Para quem quer presença + captação + sistema",
     features: [
@@ -35,12 +49,12 @@ const plans = [
     ],
     setup: "R$ 797",
     monthly: "+ R$ 99,90/mês (hospedagem dedicada + CRM + suporte)",
-    prazo: "⏱ 25 a 40 dias",
+    prazo: "25 a 40 dias",
     cta: "Quero meu site inteligente →",
     highlight: true,
   },
   {
-    icon: "🛒",
+    icon: ShoppingCart,
     name: "Loja Virtual Automatizada",
     tagline: "Para vender no piloto automático",
     features: [
@@ -54,7 +68,7 @@ const plans = [
     ],
     setup: "R$ 1.997",
     monthly: "+ R$ 199,90/mês (hospedagem dedicada + automações + suporte)",
-    prazo: "⏱ 30 a 60 dias",
+    prazo: "30 a 60 dias",
     cta: "Quero minha loja →",
     highlight: false,
   },
@@ -80,17 +94,17 @@ const Planos = () => {
               }`}
             >
               {p.highlight && (
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full">
-                  ⭐ Mais Escolhido
+                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full flex items-center gap-1">
+                  <Star className="w-3 h-3" /> Mais Escolhido
                 </span>
               )}
-              <div className="text-3xl mb-3">{p.icon}</div>
+              <p.icon className="w-8 h-8 text-primary mb-3" />
               <h3 className="text-xl font-bold text-foreground mb-1">{p.name}</h3>
               <p className="text-sm text-mds-text mb-5">{p.tagline}</p>
               <ul className="space-y-2 mb-6 flex-1">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm text-foreground">
-                    <span className="text-mds-royal mt-0.5">✓</span>
+                    <Check className="w-4 h-4 text-mds-royal mt-0.5 flex-shrink-0" />
                     {f}
                   </li>
                 ))}
@@ -98,7 +112,9 @@ const Planos = () => {
               <div className="border-t border-border pt-4 mt-auto">
                 <p className="text-2xl font-extrabold text-foreground">a partir de {p.setup}</p>
                 <p className="text-xs text-mds-text mb-1">{p.monthly}</p>
-                <p className="text-xs text-mds-text mb-4">{p.prazo}</p>
+                <p className="text-xs text-mds-text mb-4 flex items-center gap-1">
+                  <Clock className="w-3 h-3" /> {p.prazo}
+                </p>
                 <a
                   href={`https://wa.me/5517992822597?text=Olá!%20Tenho%20interesse%20no%20plano%20${encodeURIComponent(p.name)}`}
                   target="_blank"
@@ -119,5 +135,7 @@ const Planos = () => {
     </section>
   );
 };
+
+import { Star } from "lucide-react";
 
 export default Planos;

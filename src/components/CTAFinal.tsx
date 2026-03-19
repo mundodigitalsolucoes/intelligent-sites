@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { MessageCircle, BookOpen, Zap } from "lucide-react";
 
 const CTAFinal = () => {
   const ref = useScrollReveal();
@@ -13,15 +14,20 @@ const CTAFinal = () => {
             href="https://wa.me/5517992822597?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20Sites%20Inteligentes%20MDS"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-mds-whatsapp text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity text-sm"
+            className="inline-flex items-center gap-2 bg-mds-whatsapp text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity text-sm"
           >
+            <MessageCircle className="w-4 h-4" />
             Falar no WhatsApp
           </a>
-          <a href="#cadastro" className="bg-primary text-primary-foreground font-bold px-6 py-3 rounded-lg hover:bg-mds-light transition-colors text-sm">
+          <a href="#cadastro" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-lg hover:bg-mds-light transition-colors text-sm">
+            <BookOpen className="w-4 h-4" />
             Receber conteúdos gratuitos
           </a>
         </div>
-        <p className="text-sm text-mds-text">⚡ Vagas limitadas por mês — atendemos poucos clientes para garantir qualidade.</p>
+        <p className="text-sm text-mds-text flex items-center justify-center gap-1">
+          <Zap className="w-4 h-4 text-primary" />
+          Vagas limitadas por mês — atendemos poucos clientes para garantir qualidade.
+        </p>
       </div>
     </section>
   );

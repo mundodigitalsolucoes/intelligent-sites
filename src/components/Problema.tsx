@@ -1,10 +1,11 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { Moon, TrendingDown, FolderOpen, Clock } from "lucide-react";
 
 const problems = [
-  { icon: "😴", title: "Leads perdidos no WhatsApp?", desc: "Mensagens sem resposta viram cliente do concorrente. Automação resolve isso." },
-  { icon: "📉", title: "Site que não aparece no Google", desc: "Sem SEO local e sem GTM configurado, você paga anúncio pra quem nunca vai comprar." },
-  { icon: "🗂️", title: "Contatos espalhados em todo lugar", desc: "Instagram, e-mail, WhatsApp separados. Sem CRM você não sabe quem é lead quente." },
-  { icon: "⏳", title: "Tempo que você não tem", desc: "Você cuida do negócio. Não dá pra ficar online respondendo pergunta básica o dia todo." },
+  { icon: Moon, title: "Leads perdidos no WhatsApp?", desc: "Mensagens sem resposta viram cliente do concorrente. Automação resolve isso." },
+  { icon: TrendingDown, title: "Site que não aparece no Google", desc: "Sem SEO local e sem GTM configurado, você paga anúncio pra quem nunca vai comprar." },
+  { icon: FolderOpen, title: "Contatos espalhados em todo lugar", desc: "Instagram, e-mail, WhatsApp separados. Sem CRM você não sabe quem é lead quente." },
+  { icon: Clock, title: "Tempo que você não tem", desc: "Você cuida do negócio. Não dá pra ficar online respondendo pergunta básica o dia todo." },
 ];
 
 const Problema = () => {
@@ -21,7 +22,7 @@ const Problema = () => {
         <div className="grid sm:grid-cols-2 gap-5 mb-12">
           {problems.map((p) => (
             <div key={p.title} className="reveal bg-background rounded-xl p-6 border-l-4 border-red-400 shadow-sm hover:shadow-md transition-shadow">
-              <p className="text-2xl mb-2">{p.icon}</p>
+              <p.icon className="w-7 h-7 text-red-400 mb-2" />
               <h3 className="font-bold text-foreground mb-1">{p.title}</h3>
               <p className="text-sm text-mds-text">{p.desc}</p>
             </div>

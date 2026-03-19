@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { BookOpen, Lock } from "lucide-react";
 
 const Cadastro = () => {
   const ref = useScrollReveal();
@@ -13,11 +14,15 @@ const Cadastro = () => {
 
   return (
     <section ref={ref} id="cadastro" className="bg-gradient-to-r from-mds-dark to-mds-royal section-padding">
-      <div className="container-mds max-w-2xl">
-        <div className="text-center mb-10 reveal">
-          <span className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm text-white/80 mb-4">📚 Conteúdo gratuito</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">Cadastre-se e tenha acesso a conteúdos que ajudam negócios a vender mais na internet</h2>
-          <p className="text-white/70">Receba direto no seu WhatsApp conteúdos, dicas e materiais práticos para fazer seu negócio crescer online.</p>
+      <div className="container-mds max-w-lg">
+        <div className="text-center mb-8 reveal">
+          <span className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm text-white/80 mb-4">
+            <BookOpen className="w-4 h-4" /> Conteúdo gratuito
+          </span>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-tight">
+            Receba conteúdos que ajudam<br />a vender mais na internet
+          </h2>
+          <p className="text-white/70 text-sm">Receba direto no seu WhatsApp conteúdos, dicas e materiais práticos para fazer seu negócio crescer online.</p>
         </div>
         <form onSubmit={handleSubmit} className="reveal space-y-4">
           <input
@@ -56,9 +61,11 @@ const Cadastro = () => {
             <option value="Só quero os conteúdos por enquanto">Só quero os conteúdos por enquanto</option>
           </select>
           <button type="submit" className="w-full bg-white text-mds-dark font-bold py-3 rounded-lg hover:bg-mds-soft transition-colors text-sm">
-            📲 Quero receber os conteúdos
+            Quero receber os conteúdos
           </button>
-          <p className="text-center text-white/50 text-xs">🔒 Seus dados estão seguros. Sem spam.</p>
+          <p className="text-center text-white/50 text-xs flex items-center justify-center gap-1">
+            <Lock className="w-3 h-3" /> Seus dados estão seguros. Sem spam.
+          </p>
         </form>
       </div>
     </section>
