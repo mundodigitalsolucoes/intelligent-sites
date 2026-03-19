@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { Bot } from "lucide-react";
 
 const steps = [
   { n: "1", title: "Estratégia e Briefing", desc: "Entendemos seu negócio, público e objetivo. Nada de template genérico.", tag: "Fase 1 · Rápida" },
@@ -30,6 +31,19 @@ const ComoFunciona = () => {
               <p className="text-sm text-mds-text">{s.desc}</p>
             </div>
           ))}
+
+          {/* Card 06 — Vendedor Automático — destaque */}
+          <div className="reveal bg-gradient-to-br from-mds-dark to-mds-royal rounded-xl p-6 hover:shadow-xl transition-shadow group sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center font-bold text-lg">6</span>
+              <span className="text-xs font-semibold bg-white/20 text-white px-3 py-1 rounded-full">Vitalício</span>
+            </div>
+            <Bot className="w-8 h-8 text-white/80 mb-3" />
+            <h3 className="font-bold text-white mb-2 text-lg">Vendedor Automático 24/7</h3>
+            <p className="text-sm text-white/70">
+              Seu site vira um vendedor que nunca dorme. Responde dúvidas, qualifica leads, envia propostas e agenda atendimentos — sozinho, todos os dias, o tempo todo.
+            </p>
+          </div>
         </div>
       </div>
     </section>

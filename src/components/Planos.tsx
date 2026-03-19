@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import { Target, Brain, ShoppingCart, Check, Clock } from "lucide-react";
+import { Target, Brain, ShoppingCart, Check, Clock, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface Plan {
@@ -26,6 +26,7 @@ const plans: Plan[] = [
       "GTM + Pixel + GA4 configurados",
       "Tags de conversão e remarketing",
       "Hospedagem dedicada incluída",
+      "E-mail profissional incluso",
     ],
     setup: "R$ 497",
     monthly: "+ R$ 49,90/mês (hospedagem + suporte)",
@@ -46,6 +47,7 @@ const plans: Plan[] = [
       "Avaliação Google integrada",
       "SEO local otimizado",
       "GTM + Pixel + GA4 + Remarketing",
+      "E-mail profissional incluso",
     ],
     setup: "R$ 797",
     monthly: "+ R$ 99,90/mês (hospedagem dedicada + CRM + suporte)",
@@ -65,6 +67,7 @@ const plans: Plan[] = [
       "CRM + gestão de clientes",
       "Relatórios de vendas automáticos",
       "GTM + Pixel + GA4 + Remarketing",
+      "E-mail profissional incluso",
     ],
     setup: "R$ 1.997",
     monthly: "+ R$ 199,90/mês (hospedagem dedicada + automações + suporte)",
@@ -83,15 +86,14 @@ const Planos = () => {
         <div className="text-center mb-12 reveal">
           <span className="text-sm font-semibold text-mds-royal uppercase tracking-wider">Planos</span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mt-2 mb-4">Escolha o que seu negócio precisa agora</h2>
-          <p className="text-mds-text max-w-2xl mx-auto">Todos os planos incluem hospedagem dedicada, segurança, suporte e automação real.</p>
+          <p className="text-mds-text max-w-2xl mx-auto">Todos os planos incluem hospedagem dedicada, e-mail profissional, segurança, suporte e automação real.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 items-stretch">
           {plans.map((p) => (
             <div
               key={p.name}
-              className={`reveal bg-background rounded-2xl p-6 flex flex-col transition-shadow hover:shadow-xl ${
-                p.highlight ? "border-2 border-primary ring-4 ring-primary/10 relative" : "border border-border"
-              }`}
+              className={`reveal bg-background rounded-2xl p-6 flex flex-col transition-shadow hover:shadow-xl ${p.highlight ? "border-2 border-primary ring-4 ring-primary/10 relative" : "border border-border"
+                }`}
             >
               {p.highlight && (
                 <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full flex items-center gap-1">
@@ -119,11 +121,10 @@ const Planos = () => {
                   href={`https://wa.me/5517992822597?text=Olá!%20Tenho%20interesse%20no%20plano%20${encodeURIComponent(p.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block text-center font-bold text-sm py-3 rounded-lg transition-colors ${
-                    p.highlight
+                  className={`block text-center font-bold text-sm py-3 rounded-lg transition-colors ${p.highlight
                       ? "bg-primary text-primary-foreground hover:bg-mds-light"
                       : "bg-mds-soft text-mds-royal hover:bg-mds-light hover:text-white"
-                  }`}
+                    }`}
                 >
                   {p.cta}
                 </a>
@@ -135,7 +136,5 @@ const Planos = () => {
     </section>
   );
 };
-
-import { Star } from "lucide-react";
 
 export default Planos;

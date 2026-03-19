@@ -58,7 +58,7 @@ const Hero = () => {
             </a>
             <a
               href="#planos"
-              className="border border-white/30 text-white font-semibold px-6 py-3 rounded-lg hover:bg-white/10 transition-colors text-sm"
+              className="bg-mds-light text-white font-semibold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity text-sm"
             >
               Ver planos
             </a>
