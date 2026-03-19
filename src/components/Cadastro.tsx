@@ -2,13 +2,39 @@ import { useState, type FormEvent } from "react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { BookOpen, Lock } from "lucide-react";
 
+const conteudos = [
+  { id: "lp", label: "LP de Alta Conversão" },
+  { id: "site", label: "Sites Inteligentes" },
+  { id: "loja", label: "Lojas Virtuais" },
+  { id: "marketing", label: "Conteúdos de Marketing e Vendas" },
+];
+
 const Cadastro = () => {
   const ref = useScrollReveal();
-  const [form, setForm] = useState({ nome: "", whatsapp: "", negocio: "", necessidade: "" });
+  const [form, setForm] = useState({
+    nome: "",
+    whatsapp: "",
+    email: "",
+    negocio: "",
+    conteudos: [] as string[],
+  });
+
+  const toggleConteudo = (id: string) => {
+    setForm((prev) => ({
+      ...prev,
+      conteudos: prev.conteudos.includes(id)
+        ? prev.conteudos.filter((c) => c !== id)
+        : [...prev.conteudos, id],
+    }));
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Meu nome é ${form.nome}. WhatsApp: ${form.whatsapp}. Meu negócio: ${form.negocio}. Preciso de: ${form.necessidade || "Informações gerais"}.`;
+    const selecionados = form.conteudos
+      .map((id) => conteudos.find((c) => c.id === id)?.label)
+      .filter(Boolean)
+      .join(", ");
+    const msg = `Olá! Meu nome é ${form.nome}. WhatsApp: ${form.whatsapp}. E-mail: ${form.email}. Meu negócio: ${form.negocio}. Quero receber: ${selecionados || "Informações gerais"}.`;
     window.open(`https://wa.me/5517992822597?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
@@ -22,8 +48,11 @@ const Cadastro = () => {
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-tight">
             Receba conteúdos que ajudam<br />a vender mais na internet
           </h2>
-          <p className="text-white/70 text-sm">Receba direto no seu WhatsApp conteúdos, dicas e materiais práticos para fazer seu negócio crescer online.</p>
+          <p className="text-white/70 text-sm">
+            Receba direto no seu <strong className="text-white">WhatsApp e e-mail</strong> conteúdos, dicas e materiais práticos para fazer seu negócio crescer online.
+          </p>
         </div>
+
         <form onSubmit={handleSubmit} className="reveal space-y-4">
           <input
             type="text"
@@ -42,6 +71,14 @@ const Cadastro = () => {
             className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/40"
           />
           <input
+            type="email"
+            required
+            placeholder="Seu melhor e-mail"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/40"
+          />
+          <input
             type="text"
             required
             placeholder="Seu negócio / segmento"
@@ -49,19 +86,28 @@ const Cadastro = () => {
             onChange={(e) => setForm({ ...form, negocio: e.target.value })}
             className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/40"
           />
-          <select
-            value={form.necessidade}
-            onChange={(e) => setForm({ ...form, necessidade: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-white/40 [&>option]:text-foreground"
+
+          {/* Checkboxes */}
+          <div className="bg-white/10 border border-white/20 rounded-lg p-4 space-y-3">
+            <p className="text-white/80 text-sm font-semibold mb-2">Qual conteúdo você gostaria de receber?</p>
+            {conteudos.map((item) => (
+              <label key={item.id} className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={form.conteudos.includes(item.id)}
+                  onChange={() => toggleConteudo(item.id)}
+                  className="w-5 h-5 rounded accent-white cursor-pointer"
+                />
+                <span className="text-white/80 text-sm group-hover:text-white transition-colors">{item.label}</span>
+              </label>
+            ))}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-white text-mds-dark font-bold py-3 rounded-lg hover:bg-mds-soft transition-colors text-sm"
           >
-            <option value="">O que você precisa?</option>
-            <option value="LP com automação">LP com automação</option>
-            <option value="Site Inteligente">Site Inteligente</option>
-            <option value="Loja Virtual">Loja Virtual</option>
-            <option value="Só quero os conteúdos por enquanto">Só quero os conteúdos por enquanto</option>
-          </select>
-          <button type="submit" className="w-full bg-white text-mds-dark font-bold py-3 rounded-lg hover:bg-mds-soft transition-colors text-sm">
-            Quero receber os conteúdos
+            Quero receber os conteúdos →
           </button>
           <p className="text-center text-white/50 text-xs flex items-center justify-center gap-1">
             <Lock className="w-3 h-3" /> Seus dados estão seguros. Sem spam.
